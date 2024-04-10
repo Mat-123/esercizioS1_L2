@@ -1,6 +1,23 @@
 <?php
 
-echo '<pre>' . print_r($_POST, true) . '</pre>'; ?>
+echo '<pre>' . print_r($_POST, true) . '</pre>'; 
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+    $surname = $_POST['surname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $checkbox = $_POST['invalidCheck'];
+
+    $errors = [];
+
+    if ($errors == []) {
+        header('Location: /esercizioS1_L2/success.php');
+    }
+}
+
+?>
 
 
 <!DOCTYPE html>
@@ -17,15 +34,16 @@ echo '<pre>' . print_r($_POST, true) . '</pre>'; ?>
 <div class="row">
     <div class="col-8 mx-auto mt-4">
     <div class="mb-3">
-    <div class="row">
+    
+        <form action="" method="post" novalidate><div class="row">
   <div class="col">
-    <form method="post" novalidate>
-  <label for="nameinput" class="form-label">Name</label>
-    <input type="text" class="form-control" placeholder="First name" id="nameinput" aria-label="First name">
+    
+  <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" placeholder="First name" id="name" aria-label="First name">
   </div>
   <div class="col">
-  <label for="surnameinput" class="form-label">Surname</label>
-    <input type="text" class="form-control" placeholder="Surname" id="surnameinput" aria-label="Last name">
+  <label for="surname" class="form-label">Surname</label>
+    <input type="text" class="form-control" placeholder="Surname" id="surname" aria-label="Last name">
   </div>
 </div>
 </div>
@@ -36,7 +54,15 @@ echo '<pre>' . print_r($_POST, true) . '</pre>'; ?>
   <input type="email" class="form-control mb-3" id="email" placeholder="example@email.com">
   <label for="password" class="form-label">Password</label>
   <input type="password" class="form-control mb-3" id="password" placeholder="example@email.com">
-  <button type="submit" class="btn btn-primary">Send</button>
+  <input class="form-check-input" type="checkbox" value="" id="invalidCheck">
+      <label class="form-check-label" for="invalidCheck">
+        Agree to terms and conditions
+      </label>
+      <div class="invalid-feedback">
+        You must agree before submitting.
+      </div>
+      <div class="col-12">
+  <button type="submit" class="btn btn-primary mt-2">Send</button></div>
 </form>
 </div>
 </div>
